@@ -1,4 +1,7 @@
 # CustomerApplication
+It have Crud opration of insert/ update / delete records
+
+# Technology used
 1) MVC 
 2) Web API
 3) Entity Framework 
