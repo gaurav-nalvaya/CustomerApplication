@@ -23,8 +23,8 @@ namespace CustomerWebApplication.Controllers
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "SomeThing Went Wrong Please try after sometime.";
-            }           
-           
+            }
+            
             return View(contactList);
         }
 
@@ -40,7 +40,17 @@ namespace CustomerWebApplication.Controllers
                 try
                 {
                     HttpResponseMessage response = GlobalVaribles.WebApiClient.GetAsync("ContactInformation/" + id.ToString()).Result;
-                    return View(response.Content.ReadAsAsync<ContactModel>().Result);
+                    var responseObj = response.Content.ReadAsAsync<ContactModel>().Result;
+                    ContactModel ct = new ContactModel()
+                    {
+                        CustomerId = responseObj.CustomerId,
+                        FirstName = responseObj.FirstName.Trim(),
+                        LastName = responseObj.LastName.Trim(),
+                        PhoneNumber = responseObj.PhoneNumber.Trim(),
+                        Email = responseObj.Email.Trim(),
+                        Status = responseObj.Status
+                    };
+                    return View(ct);
                 }
                 catch (Exception ex)
                 {

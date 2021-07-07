@@ -12,13 +12,16 @@ namespace CustomerWebApplication.Models
         public int CustomerId { get; set; }
 
         [Required]
+        [MaxLength(30, ErrorMessage = "First Name Length should be more then 30 charecters.")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
+        [MaxLength(30, ErrorMessage = "Last Name Length should be more then 30 charecters.")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
         [EmailAddress]
+        [MaxLength(50, ErrorMessage = "Email Length should be more then 50 charecters.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "You must provide a mobile number")]
