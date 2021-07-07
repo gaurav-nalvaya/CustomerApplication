@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
-
+using System.Configuration;
 namespace CustomerWebApplication
 {
     public static class GlobalVaribles
@@ -13,7 +13,10 @@ namespace CustomerWebApplication
         public static HttpClient WebApiClient = new HttpClient();
 
         static GlobalVaribles() {
-            WebApiClient.BaseAddress = new Uri("http://localhost:51163/api/");
+
+            string webApiURl = ConfigurationManager.AppSettings["WebApiURL"].ToString();
+            WebApiClient.BaseAddress = new Uri(webApiURl);
+           
             WebApiClient.DefaultRequestHeaders.Clear();
             WebApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
